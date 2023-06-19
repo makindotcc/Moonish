@@ -11,7 +11,7 @@ Force enable immersive dark mode titlebar for whitelisted windows.
   !["%localappdata%\Programs" in windows explorer path field](assets%2Flocalprogramspath.png)
 - download latest release from [releases](https://github.com/makindotcc/moonish/releases) and unzip it to
   ``Moonish`` directory
-- Go to ``Monish`` directory and run ``moonish.exe``.
+- Go to ``Moonish`` directory and run ``moonish.exe``.
 - Add your desired window titles (case-sensitive) to immersive darkmode to ``whitelisted_windows.txt``.
 Every line is part of window title that should have our dark immersive titlebar. Example:
 ``Minecraft`` will enable dark mode for windows with titles: ``Minecraft Launcher``, ``Launcher Minecraft 1.20`` etc.
