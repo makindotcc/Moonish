@@ -17,6 +17,7 @@ Every line is part of window title that should have our dark immersive titlebar.
 ``Minecraft`` will enable dark mode for windows with titles: ``Minecraft Launcher``, ``Launcher Minecraft 1.20`` etc.
 - [Optional] enable auto launch on startup from icon tray:\
   ![Moonish trayicon context menu showing "Toggle auto start" menu item](assets%2Ftray_autolaunch.png)
+- Reload config from tray icon.
 
 # Logo credits
 moon.svg, moon.ico - [tabler-icons.io](https://tabler-icons.io/)
