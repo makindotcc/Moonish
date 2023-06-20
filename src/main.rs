@@ -43,7 +43,7 @@ fn main() {
             0,
             WINEVENT_OUTOFCONTEXT,
         );
-        EnumWindows(Some(on_enum_windows_set_dark_mode), LPARAM(0));
+        update_all_windows();
 
         let tray_menu = TrayMenu::new();
         let menu_channel = MenuEvent::receiver();
@@ -60,10 +60,17 @@ fn main() {
     }
 }
 
+fn update_all_windows() {
+    unsafe {
+        EnumWindows(Some(on_enum_windows_set_dark_mode), LPARAM(0));
+    }
+}
+
 fn handle_tray_event(tray_menu: &TrayMenu, event: &MenuEvent, auto_launch: &AutoLaunch) {
     if event.id == tray_menu.reload_config.id() {
         println!("Reloading config");
         *WHITELISTED_WINDOWS.write().unwrap() = cfg::load_or_create_whitelisted_windows();
+        update_all_windows();
     } else if event.id == tray_menu.open_config.id() {
         println!("Opening config");
         if let Err(err) = Command::new("explorer").arg(cfg::FILE_PATH).spawn() {
