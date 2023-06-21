@@ -27,11 +27,19 @@ use windows::Win32::UI::WindowsAndMessaging::{
 static WHITELISTED_WINDOWS: RwLock<Vec<WindowTitlePart>> = RwLock::new(Vec::new());
 
 fn main() {
-    *WHITELISTED_WINDOWS.write().unwrap() = cfg::load_or_create_whitelisted_windows();
+    const AUTOSTART_ARG: &str = "-autostart";
 
     let app_path = env::current_exe().expect("Could not get current exe path");
+    let app_dir = app_path.parent().expect("Invalid program path");
     let app_path = app_path.to_str().expect("Empty current exe path");
-    let auto_launch = AutoLaunch::new("Moonish", &app_path, &[] as &[&str]);
+    let auto_launch = AutoLaunch::new("Moonish", &app_path, &[AUTOSTART_ARG] as &[&str]);
+
+    if env::args().next() == Some(String::from(AUTOSTART_ARG)) {
+        println!("Started from autostart.");
+        env::set_current_dir(app_dir).expect("Could not set current working directory.");
+    }
+
+    *WHITELISTED_WINDOWS.write().unwrap() = cfg::load_or_create_whitelisted_windows();
 
     unsafe {
         let hook = SetWinEventHook(
