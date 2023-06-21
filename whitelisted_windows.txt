@@ -3,3 +3,4 @@ IDA
 Notatnik
 Media Player
 League of Legends
+VLC
