@@ -34,7 +34,7 @@ fn main() {
     let app_path = app_path.to_str().expect("Empty current exe path");
     let auto_launch = AutoLaunch::new("Moonish", &app_path, &[AUTOSTART_ARG] as &[&str]);
 
-    if env::args().next() == Some(String::from(AUTOSTART_ARG)) {
+    if env::args().skip(1).next() == Some(String::from(AUTOSTART_ARG)) {
         println!("Started from autostart.");
         env::set_current_dir(app_dir).expect("Could not set current working directory.");
     }
