@@ -4,3 +4,4 @@ Notatnik
 Media Player
 League of Legends
 VLC
+Android Emulator
